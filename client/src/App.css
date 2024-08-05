@@ -1,0 +1,227 @@
+/* src/App.css */
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.heading{
+  margin: 20px;
+  padding: 10px;
+  font-size: 40px;
+  font-family: "Rowdies", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #e2fffd;
+
+}
+.card-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap:wrap;
+  align-items: center;
+  max-width: 60%;
+  margin: 20px auto;
+  /* background-color: red; */
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 124px; /* Relative width to the parent container */
+  height: 150px; /* Height will adjust based on content */
+  border-radius: 8px;
+  padding: 16px; /* Added padding for better content spacing */
+  margin:  6px;
+  
+  backdrop-filter: blur(20px) saturate(167%);
+  -webkit-backdrop-filter: blur(20px) saturate(167%);
+  background-color: rgba(72, 72, 72, 0.23);
+  border: 1px solid #7ebab56b;
+  cursor: pointer;
+}
+
+.imgClass{
+  width: 50%;
+}
+
+.btn{
+    /* width: 17%; */
+    /* background-color: rgb(14, 10, 10); */
+    color: #b2b2b2;
+    font-size: small;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight:400;
+    font-style: normal;
+    border-radius: 5px;
+    padding: 0 10px;
+    /* border:solid 1px rgb(54, 54, 54); */
+    margin: 0 2px;
+    transition: all .2s;
+    
+
+}
+.l-btn{
+  color: #b2b2b2;
+  font-size: small;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:400;
+  font-style: normal;
+  transition: all .2s;
+  
+  
+}
+.l-img{
+  width: 20%;
+}
+
+.btn,
+.l-btn:hover{
+  color: #7EBAB5;
+
+}
+
+.nav{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  background-color: #181A25;
+  /* width: 30%; */
+  padding: 0 13px;
+  height: 35px;
+  box-shadow: 0px 16px 48px 0px rgba(0, 0, 0, 0.176);
+  border-radius: 7px;
+  gap: 5px;
+}
+.btn-div{
+
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  background-color: #181A25;
+  /* width: 30%; */
+  padding: 0 13px;
+  height: 35px;
+  box-shadow: 0px 16px 48px 0px rgba(0, 0, 0, 0.176);
+  border-radius: 7px;
+  gap: 5px;
+  /* background-color: #4d40c9; */
+}
+.l-div{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  flex: 4;
+  gap: 3px;
+
+  /* background: red; */
+
+}
+.timer{
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 30px;
+
+}
+.stopwatch{
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  margin: 0 auto;
+  gap: 20px;
+}
+.ranks{
+  margin-left: 10px;
+  ont-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+
+}
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .card {
+    width: 80px; /* Wider width for smaller screens */
+    height: 100px; /* Allow height to adjust dynamically */
+  }
+}
+
+@media (max-width: 425px) {
+  .card {
+    width: 60px; /* Wider width for smaller screens */
+    height: 70px; /* Allow height to adjust dynamically */
+  }
+}
+
+@media (max-width:840px) {
+ 
+  .imgClass{
+    width: 70%;
+  }
+  
+}
+
+.Modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  width: 400px;
+  max-width: 90%;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+
+  backdrop-filter: blur(14px) saturate(193%);
+  -webkit-backdrop-filter: blur(14px) saturate(193%);
+  background-color: rgba(22, 22, 22, 0.67);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(31, 31, 31, 0.75);
+}
+
+.Modal h2 {
+  margin-bottom: 7px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:400;
+}
+
+.Modal h3 {
+  margin: 0 0 20px;
+  font-size: 36px;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:400;
+
+}
+.Modal button{
+  padding: 5px 15px;
+  background-color: #567573;
+  border-radius: 4px;
+  margin-top: 15px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:400;
+
+}
