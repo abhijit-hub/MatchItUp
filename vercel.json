@@ -1,0 +1,23 @@
+{
+    "version": 2,
+    "projects": {
+      "client": {
+        "src": "client/vercel.json"
+      },
+      "server": {
+        "src": "server/index.js",
+        "use": "@vercel/node"
+      }
+    },
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "server/index.js"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "client/dist/$1"
+      }
+    ]
+  }
+  
