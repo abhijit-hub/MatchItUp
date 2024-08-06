@@ -158,8 +158,8 @@ const App = () => {
   const saveRanking = async () => {
     try {
       const time = elapsedTime.seconds * 1000 + elapsedTime.milliseconds * 10;
-      await axios.post('http://localhost:5000/api/rankings', { time, level: difficulty });
-      const response = await axios.post('http://localhost:5000/api/calculateRank', { time, level: difficulty });
+      await axios.post('/api/rankings', { time }); // Change here
+      const response = await axios.post('/api/calculateRank', { time }); // Change here
       setUserRank(response.data.rank);
       fetchRankings();
       setIsModalOpen(true);
@@ -167,16 +167,16 @@ const App = () => {
       console.error('Error saving ranking:', error);
     }
   };
-
+  
   const fetchRankings = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/rankings', { params: { level: difficulty } });
+      const response = await axios.get('/api/rankings'); // Change here
       setRankings(response.data);
     } catch (error) {
       console.error('Error fetching rankings:', error);
     }
   };
-
+  
   useEffect(() => {
     fetchRankings();
   }, [difficulty]);
