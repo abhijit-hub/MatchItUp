@@ -10,6 +10,14 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+const cors = require('cors');
+// Allow all origins
+app.use(cors());
+// Allow specific origin(s)
+app.use(cors({
+  origin: 'https://matchitup.vercel.app'
+}));
+
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://itsabhijitmore:Abhi9359@cluster0.v2xhxqy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
   
