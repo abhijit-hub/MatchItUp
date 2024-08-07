@@ -158,8 +158,8 @@ const App = () => {
   const saveRanking = async () => {
     try {
       const time = elapsedTime.seconds * 1000 + elapsedTime.milliseconds * 10;
-      await axios.post('https://matchitup-server.vercel.app/api/rankings', { time, level: difficulty });
-      const response = await axios.post('https://matchitup-server.vercel.app/api/calculateRank', { time, level: difficulty });
+      await axios.post('http://localhost:5000/api/rankings', { time, level: difficulty });
+      const response = await axios.post('http://localhost:5000/api/calculateRank', { time, level: difficulty });
       setUserRank(response.data.rank);
       fetchRankings();
       setIsModalOpen(true);
@@ -170,20 +170,20 @@ const App = () => {
 
   const fetchRankings = async () => {
     try {
-      const response = await axios.get('https://matchitup-server.vercel.app/rankings', { params: { level: difficulty } });
+      const response = await axios.get('http://localhost:5000/api/rankings', { params: { level: difficulty } });
       setRankings(response.data);
     } catch (error) {
       console.error('Error fetching rankings:', error);
     }
   };
-  
+
   useEffect(() => {
     fetchRankings();
   }, [difficulty]);
 
   return (
     <div className="App">
-      <h1 className='heading'>Match It Up</h1>
+      <h1 className='heading'>MatchX</h1>
         <div className='btn-div'>
           <button className='btn' onClick={() => handleChangeCount(8, 'Easy')}>Easy</button>
           <button className='btn' onClick={() => handleChangeCount(12, 'Medium')}>Medium</button>

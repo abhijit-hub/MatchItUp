@@ -10,23 +10,12 @@ const app = express();
 app.use(bodyParser.json());
 
 // CORS configuration
-const allowedOrigins = ['https://matchitup.vercel.app'];
-app.use(cors({
-  origin: function(origin, callback){
-    // allow requests with no origin (like mobile apps or curl requests)
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin) === -1){
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
-  credentials: true
-}));
+app.use(cors());
+
 
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://itsabhijitmore:Abhi9359@cluster0.v2xhxqy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
-  
+
 });
 
 // Define schemas and models for different difficulty levels
@@ -46,8 +35,11 @@ const getRankingModel = (level) => {
   throw new Error('Invalid difficulty level');
 };
 
+app.get('/api', async (req, res) => {
+  res.send('Welcome to API')
+});
 // Routes
-app.post('https://matchitup-server.vercel.app/api/rankings', async (req, res) => {
+app.post('/api/rankings', async (req, res) => {
   const { time, level } = req.body;
   try {
     const Ranking = getRankingModel(level);
@@ -60,7 +52,7 @@ app.post('https://matchitup-server.vercel.app/api/rankings', async (req, res) =>
   }
 });
 
-app.post('https://matchitup-server.vercel.app/api/calculateRank', async (req, res) => {
+app.post('/api/calculateRank', async (req, res) => {
   const { time, level } = req.body;
   try {
     const Ranking = getRankingModel(level);
@@ -71,7 +63,7 @@ app.post('https://matchitup-server.vercel.app/api/calculateRank', async (req, re
   }
 });
 
-app.get('https://matchitup-server.vercel.app/api/rankings', async (req, res) => {
+app.get('/api/rankings', async (req, res) => {
   const { level } = req.query;
   try {
     const Ranking = getRankingModel(level);
