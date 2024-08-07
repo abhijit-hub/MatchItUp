@@ -12,8 +12,7 @@ app.use(cors());
 
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://itsabhijitmore:Abhi9359@cluster0.v2xhxqy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  
 });
 
 // Define schemas and models for different difficulty levels
