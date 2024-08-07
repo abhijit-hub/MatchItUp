@@ -158,8 +158,8 @@ const App = () => {
   const saveRanking = async () => {
     try {
       const time = elapsedTime.seconds * 1000 + elapsedTime.milliseconds * 10;
-      await axios.post('https://matchitup-server.vercel.app', { time, level: difficulty });
-      const response = await axios.post('https://matchitup-server.vercel.app', { time, level: difficulty });
+      await axios.post('https://matchitup-server.vercel.app/api/rankings', { time, level: difficulty });
+      const response = await axios.post('https://matchitup-server.vercel.app/api/calculateRank', { time, level: difficulty });
       setUserRank(response.data.rank);
       fetchRankings();
       setIsModalOpen(true);
@@ -170,7 +170,7 @@ const App = () => {
 
   const fetchRankings = async () => {
     try {
-      const response = await axios.get('https://matchitup-server.vercel.app', { params: { level: difficulty } });
+      const response = await axios.get('https://matchitup-server.vercel.app/rankings', { params: { level: difficulty } });
       setRankings(response.data);
     } catch (error) {
       console.error('Error fetching rankings:', error);
