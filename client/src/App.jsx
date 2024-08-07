@@ -183,7 +183,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className='heading'>MatchX</h1>
+      <h1 className='heading'>Match It Up</h1>
         <div className='btn-div'>
           <button className='btn' onClick={() => handleChangeCount(8, 'Easy')}>Easy</button>
           <button className='btn' onClick={() => handleChangeCount(12, 'Medium')}>Medium</button>
