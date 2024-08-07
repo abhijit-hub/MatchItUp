@@ -3,6 +3,7 @@ import Cards from './Components/Cards';
 import './App.css';
 import axios from 'axios';
 import Modal from 'react-modal';
+import { Analytics } from "@vercel/analytics/react"
 
 const initialCardstwo = [
   { id: 1, symbol: 'C', isFlipped: false, icon: 'tech/React.svg' },
@@ -183,7 +184,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className='heading'>MatchX</h1>
+      <h1 className='heading'>Match It Up</h1>
         <div className='btn-div'>
           <button className='btn' onClick={() => handleChangeCount(8, 'Easy')}>Easy</button>
           <button className='btn' onClick={() => handleChangeCount(12, 'Medium')}>Medium</button>
@@ -223,6 +224,7 @@ const App = () => {
           <button onClick={() => setIsModalOpen(false)}>Close</button>
         </Modal>
       </div>
+      <Analytics />
     </div>
   );
 };
