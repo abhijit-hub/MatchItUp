@@ -8,14 +8,20 @@ const app = express();
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors());
 
-const cors = require('cors');
-// Allow all origins
-app.use(cors());
-// Allow specific origin(s)
+// CORS configuration
+const allowedOrigins = ['https://matchitup.vercel.app'];
 app.use(cors({
-  origin: 'https://matchitup.vercel.app'
+  origin: function(origin, callback){
+    // allow requests with no origin (like mobile apps or curl requests)
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true
 }));
 
 // Connect to MongoDB
