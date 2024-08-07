@@ -47,7 +47,7 @@ const getRankingModel = (level) => {
 };
 
 // Routes
-app.post('/api/rankings', async (req, res) => {
+app.post('https://matchitup-server.vercel.app/api/rankings', async (req, res) => {
   const { time, level } = req.body;
   try {
     const Ranking = getRankingModel(level);
@@ -60,7 +60,7 @@ app.post('/api/rankings', async (req, res) => {
   }
 });
 
-app.post('/api/calculateRank', async (req, res) => {
+app.post('https://matchitup-server.vercel.app/api/calculateRank', async (req, res) => {
   const { time, level } = req.body;
   try {
     const Ranking = getRankingModel(level);
@@ -71,7 +71,7 @@ app.post('/api/calculateRank', async (req, res) => {
   }
 });
 
-app.get('/api/rankings', async (req, res) => {
+app.get('https://matchitup-server.vercel.app/api/rankings', async (req, res) => {
   const { level } = req.query;
   try {
     const Ranking = getRankingModel(level);
