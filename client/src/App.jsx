@@ -3,56 +3,13 @@ import Cards from './Components/Cards';
 import './App.css';
 import axios from 'axios';
 import Modal from 'react-modal';
+import { initialCardsone, initialCardstwo, initialCardsthree } from './cardData';
+import RankingModal from './Components/RankingModal';
+import Timer from './Components/Timer';
+import DifficultyButtons from './Components/DifficultyButtons';
 import { Analytics } from "@vercel/analytics/react"
 
-const initialCardstwo = [
-  { id: 1, symbol: 'C', isFlipped: false, icon: 'tech/React.svg' },
-  { id: 2, symbol: 'A', isFlipped: false, icon: 'tech/HTML5.svg' },
-  { id: 3, symbol: 'B', isFlipped: false, icon: 'tech/Figma.svg' },
-  { id: 4, symbol: 'B', isFlipped: false, icon: 'tech/Figma.svg' },
-  { id: 5, symbol: 'A', isFlipped: false, icon: 'tech/HTML5.svg' },
-  { id: 6, symbol: 'C', isFlipped: false, icon: 'tech/React.svg' },
-  { id: 7, symbol: 'D', isFlipped: false, icon: 'tech/JavaScript.svg' },
-  { id: 8, symbol: 'D', isFlipped: false, icon: 'tech/JavaScript.svg' },
-  { id: 9, symbol: 'F', isFlipped: false, icon: 'tech/Node.js.svg' },
-  { id: 10, symbol: 'F', isFlipped: false, icon: 'tech/Node.js.svg' },
-  { id: 11, symbol: 'G', isFlipped: false, icon: 'tech/Python.svg' },
-  { id: 12, symbol: 'G', isFlipped: false, icon: 'tech/Python.svg' },
 
-];
-
-const initialCardsone = [
-  { id: 1, symbol: 'C', isFlipped: false, icon: 'tech/React.svg' },
-  { id: 2, symbol: 'A', isFlipped: false, icon: 'tech/HTML5.svg' },
-  { id: 3, symbol: 'B', isFlipped: false, icon: 'tech/Figma.svg' },
-  { id: 4, symbol: 'B', isFlipped: false, icon: 'tech/Figma.svg' },
-  { id: 5, symbol: 'A', isFlipped: false, icon: 'tech/HTML5.svg' },
-  { id: 6, symbol: 'C', isFlipped: false, icon: 'tech/React.svg' },
-  { id: 7, symbol: 'H', isFlipped: false, icon: 'tech/C.svg' },
-  { id: 8, symbol: 'H', isFlipped: false, icon: 'tech/C.svg' },
-];
-
-const initialCardsthree = [
-  { id: 1, symbol: 'C', isFlipped: false, icon: 'tech/React.svg' },
-  { id: 2, symbol: 'A', isFlipped: false, icon: 'tech/HTML5.svg' },
-  { id: 3, symbol: 'B', isFlipped: false, icon: 'tech/Figma.svg' },
-  { id: 4, symbol: 'B', isFlipped: false, icon: 'tech/Figma.svg' },
-  { id: 5, symbol: 'A', isFlipped: false, icon: 'tech/HTML5.svg' },
-  { id: 6, symbol: 'C', isFlipped: false, icon: 'tech/React.svg' },
-  { id: 7, symbol: 'D', isFlipped: false, icon: 'tech/JavaScript.svg' },
-  { id: 8, symbol: 'D', isFlipped: false, icon: 'tech/JavaScript.svg' },
-  { id: 9, symbol: 'E', isFlipped: false, icon: 'tech/MongoDB.svg' }, //
-  { id: 10, symbol: 'E', isFlipped: false, icon: 'tech/MongoDB.svg' },
-  { id: 11, symbol: 'F', isFlipped: false, icon: 'tech/Node.js.svg' },
-  { id: 12, symbol: 'F', isFlipped: false, icon: 'tech/Node.js.svg' },
-  { id: 13, symbol: 'G', isFlipped: false, icon: 'tech/Python.svg' },
-  { id: 14, symbol: 'G', isFlipped: false, icon: 'tech/Python.svg' },
-  { id: 15, symbol: 'H', isFlipped: false, icon: 'tech/C.svg' },
-  { id: 16, symbol: 'H', isFlipped: false, icon: 'tech/C.svg' },
-
-
-
-];
 
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -70,7 +27,7 @@ const getInitialCards = (count) => {
   } else if (count === 16) {
     return shuffleArray([...initialCardsthree]);
   } else {
-    return []; // or some default value
+    return []; 
   }
 };
 Modal.setAppElement('#root'); 
@@ -185,46 +142,16 @@ const App = () => {
   return (
     <div className="App">
       <h1 className='heading'>Match It Up</h1>
-        <div className='btn-div'>
-          <button className='btn' onClick={() => handleChangeCount(8, 'Easy')}>Easy</button>
-          <button className='btn' onClick={() => handleChangeCount(12, 'Medium')}>Medium</button>
-          <button className='btn' onClick={() => handleChangeCount(16, 'Hard')}>Hard</button>
-        </div>
-        
-      
+      <DifficultyButtons handleChangeCount={handleChangeCount} />
       <div className="card-grid">
         {cards.map(card => (
           <Cards key={card.id} card={card} onClick={handleCardClick} />
         ))}
       </div>
-      <div className="stopwatch">
-        <h2 className='timer'>{elapsedTime.seconds}.{elapsedTime.milliseconds}s</h2>
-        {isGameWon()?<form action="">
-          <button typeof='submit'>Restart</button>
-          
-        </form>:""}
-      </div>
-      <div className='bg-white border-red-200 border-t-'>
-        <Modal
-          isOpen={isModalOpen}
-          onRequestClose={() => setIsModalOpen(false)}
-          contentLabel="Ranking Modal"
-          className="Modal bg-red-500"
-          overlayClassName="Overlay"
-        >
-          <h3>Your Rank: {userRank}</h3>
-          <h2>Top 5</h2>
-          <ul>
-            {rankings.map((ranking, index) => (
-              <li key={index}>
-                {index + 1} <span className='ranks'>{ranking.time / 1000}s</span>
-              </li>
-            ))}
-          </ul>
-          <button onClick={() => setIsModalOpen(false)}>Close</button>
-        </Modal>
-      </div>
+      <Timer elapsedTime={elapsedTime} />
+      <RankingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} userRank={userRank} rankings={rankings} />
       <Analytics />
+      <footer>Created by <a target='#' href="https://github.com/abhijit-hub">abhijit-hub</a></footer>
     </div>
   );
 };

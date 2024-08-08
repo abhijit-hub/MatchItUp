@@ -3,24 +3,20 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-// Create Express app
 const app = express();
 
-// Middleware
 app.use(bodyParser.json());
 
-// CORS configuration
 app.use(cors());
 
 
-// Connect to MongoDB
+
 mongoose.connect('mongodb+srv://itsabhijitmore:Abhi9359@cluster0.v2xhxqy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
 
 });
 
-// Define schemas and models for different difficulty levels
 const rankingSchema = new mongoose.Schema({
-  time: Number, // time in milliseconds
+  time: Number, 
 });
 
 const RankingEasy = mongoose.model('RankingEasy', rankingSchema);
@@ -74,6 +70,6 @@ app.get('/api/rankings', async (req, res) => {
   }
 });
 
-// Start the server
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

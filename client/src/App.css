@@ -225,3 +225,11 @@
   font-weight:400;
 
 }
+footer{
+  position: absolute;
+  color: #e2fffd28;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 10px;
+}
