@@ -98,7 +98,6 @@ const App = () => {
   useEffect(() => {
     if (isGameWon() && timerRef.current) {
       clearInterval(timerRef.current);
-      setIsLoadingRankings(true);
       saveRanking();
 
     }
@@ -127,12 +126,13 @@ const App = () => {
 
   const saveRanking = async () => {
     try {
+      setIsLoadingRankings(true);
       const time = elapsedTime.seconds * 1000 + elapsedTime.milliseconds * 10;
       await axios.post('https://matchitup-server.vercel.app/api/rankings', { time, level: difficulty });
+      setIsModalOpen(true);
       const response = await axios.post('https://matchitup-server.vercel.app/api/calculateRank', { time, level: difficulty });
       setUserRank(response.data.rank);
       fetchRankings();
-      setIsModalOpen(true);
     } catch (error) {
       console.error('Error saving ranking:', error);
     }
