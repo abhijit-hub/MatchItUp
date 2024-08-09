@@ -107,6 +107,13 @@ const App = () => {
     setFlippedCards([]);
     setStartTime(null);
     setElapsedTime({ seconds: 0, milliseconds: 0 });
+    handleRestart();
+  };
+  const handleRestart = () => {
+    setCards(getInitialCards(count));
+    setFlippedCards([]);
+    setStartTime(null);
+    setElapsedTime({ seconds: 0, milliseconds: 0 });
   };
 
   const isGameWon = () => {
@@ -148,7 +155,7 @@ const App = () => {
           <Cards key={card.id} card={card} onClick={handleCardClick} />
         ))}
       </div>
-      <Timer elapsedTime={elapsedTime} isGameWon={isGameWon} />
+      <Timer elapsedTime={elapsedTime} isGameWon={isGameWon} handleRestart={handleRestart}/>
       <RankingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} userRank={userRank} rankings={rankings} />
       <Analytics />
       <footer>Created by <a target='#' href="https://github.com/abhijit-hub">abhijit-hub</a></footer>
