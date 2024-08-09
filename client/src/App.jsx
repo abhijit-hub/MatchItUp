@@ -99,6 +99,8 @@ const App = () => {
     if (isGameWon() && timerRef.current) {
       clearInterval(timerRef.current);
       saveRanking();
+      setIsModalOpen(true);
+
     }
   }, [cards]);
 
@@ -130,7 +132,6 @@ const App = () => {
       const response = await axios.post('https://matchitup-server.vercel.app/api/calculateRank', { time, level: difficulty });
       setUserRank(response.data.rank);
       fetchRankings();
-      setIsModalOpen(true);
     } catch (error) {
       console.error('Error saving ranking:', error);
     }
