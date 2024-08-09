@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import '../App.css'
-const RankingModal = ({ isOpen, onClose, userRank, rankings }) => {
+const RankingModal = ({ isOpen, onClose, userRank, rankings, isLoadingRankings }) => {
   return (
     <div className='bg-white border-red-200 border-t-'>
       <Modal
