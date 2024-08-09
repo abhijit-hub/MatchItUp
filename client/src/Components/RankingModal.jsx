@@ -8,7 +8,7 @@ const RankingModal = ({ isOpen, onClose, userRank, rankings }) => {
         isOpen={isOpen}
         onRequestClose={onClose}
         contentLabel="Ranking Modal"
-        className={isModalOpen ? "Modal ModalOpen" : "Modal"}
+        className="Modal"
         overlayClassName="Overlay"
       >
         <h3>Your Rank: {userRank}</h3>
