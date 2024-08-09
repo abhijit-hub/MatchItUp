@@ -148,7 +148,7 @@ const App = () => {
           <Cards key={card.id} card={card} onClick={handleCardClick} />
         ))}
       </div>
-      <Timer elapsedTime={elapsedTime} />
+      <Timer elapsedTime={elapsedTime} isGameWon={isGameWon} />
       <RankingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} userRank={userRank} rankings={rankings} />
       <Analytics />
       <footer>Created by <a target='#' href="https://github.com/abhijit-hub">abhijit-hub</a></footer>
