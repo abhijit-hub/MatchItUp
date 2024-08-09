@@ -98,7 +98,9 @@ const App = () => {
   useEffect(() => {
     if (isGameWon() && timerRef.current) {
       clearInterval(timerRef.current);
+      setIsLoadingRankings(true);
       saveRanking();
+
     }
   }, [cards]);
 
@@ -138,7 +140,6 @@ const App = () => {
 
   const fetchRankings = async () => {
     try {
-      setIsLoadingRankings(true);
 
       const response = await axios.get('https://matchitup-server.vercel.app/api/rankings', { params: { level: difficulty } });
       setRankings(response.data);
