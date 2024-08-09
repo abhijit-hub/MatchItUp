@@ -43,6 +43,8 @@ const App = () => {
   const [rankings, setRankings] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userRank, setUserRank] = useState(null);
+  const [isLoadingRankings, setIsLoadingRankings] = useState(false);
+
 
   useEffect(() => {
     if (startTime !== null) {
@@ -110,6 +112,7 @@ const App = () => {
     handleRestart();
   };
   const handleRestart = () => {
+    
     setCards(getInitialCards(count));
     setFlippedCards([]);
     setStartTime(null);
@@ -139,6 +142,9 @@ const App = () => {
       setRankings(response.data);
     } catch (error) {
       console.error('Error fetching rankings:', error);
+    } finally {
+      setIsLoadingRankings(false);
+
     }
   };
 
@@ -156,7 +162,7 @@ const App = () => {
         ))}
       </div>
       <Timer elapsedTime={elapsedTime} isGameWon={isGameWon} handleRestart={handleRestart}/>
-      <RankingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} userRank={userRank} rankings={rankings} />
+      <RankingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} userRank={userRank} rankings={rankings}  isLoadingRankings={isLoadingRankings} />
       <Analytics />
       <footer>Created by <a target='#' href="https://github.com/abhijit-hub">abhijit-hub</a></footer>
     </div>

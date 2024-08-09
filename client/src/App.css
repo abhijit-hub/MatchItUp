@@ -226,17 +226,17 @@
 
 }
 footer{
+  position: fixed;
   color: #e2fffd28;
+  width: 100%;
   bottom: 0;
-  left: 0;
-  right: 0;
-  margin-bottom: 10px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 @media (max-width: 768px) {
   footer {
     font-size: 15px;
-
 
   }
 }
